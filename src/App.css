@@ -1,0 +1,56 @@
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300..700;1,300..700&display=swap');
+
+
+.red-hat-text-400{
+  font-family: "Red Hat Text", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.red-hat-text-600{
+  font-family: "Red Hat Text", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.red-hat-text-700{
+  font-family: "Red Hat Text", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* .red {
+  color: hsl(14, 86%, 42%);
+} */
+
+.text-rose-50{
+  color: hsl(20, 50%, 98%);
+}
+
+.text-rose-100{
+  color: hsl(13, 31%, 94%);
+}
+
+.text-rose-300{
+  color: hsl(14, 25%, 72%);
+}
+
+.text-rose-400{
+  color: hsl(7, 20%, 60%);
+}
+
+.text-rose-500{
+  color: hsl(12, 20%, 44%)
+}
+
+.text-rose-900{
+color: hsl(14, 65%, 9%)
+}
+
+.text-red-900{
+  color: hsl(14, 86%, 42%);
+}
