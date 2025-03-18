@@ -15,7 +15,35 @@ import removeItem from '../src/assets/images/icon-remove-item.svg'
 import carbonNeutral from '../src/assets/images/icon-carbon-neutral.svg'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [cartValue, setCartValue] = useState([0])
+  const [cartItems, setCartItems] = useState([0])
+
+
+  const addCartItems = (item) => {
+    setCartValue(cartValue + 1)
+    setCartItems([...cartItems, item])
+  }
+
+  // Removes one item at a time
+  const removeCartItems = (itemName) =>{
+    setCartItems((prevCart) => {
+      const index = prevCart.findIndex(item => item.name === itemName)
+      if (index !== false) {
+        const newCart = [...prevCart]
+        newCart.splice(index, 1)
+        return newCart
+      }
+      return prevCart
+    })
+  }
+
+    // removes all items at once
+  const removeAllCartItems = (itemName) => {
+    const newItem = cartItems.filter(item => item.name !== itemName)
+    setCartItems(newItem)
+    setCartValue(cartValue - 1)
+    setCartItems([...cartItems, item])
+  }
 
   return (
     <>
@@ -23,11 +51,11 @@ function App() {
       <h1 className='text-7xl red-hat-text-600 mb-10'>Desserts</h1>
     <div className='mx-auto'>
     <div id="one" className='grid grid-cols-1 sm:grid-cols-3 gap-3'>
-      <div>
+      <div className='w-[70%] mx-auto lg:w-[80%]'>
         <div className="relative">
             <img className='rounded-3xl' src={waffle} alt="" />
           <div className="absolute top-[90%] left-[10%] flex justify-center w-[80%] max-w-[80%] mx-auto">
-            <button className='flex align-center px-10 py-4 border-1 border-gray-900 rounded-4xl shadow-sm text-black hover:text-rose-50 font-semigold bg-white hover:bg-red-700 '>
+            <button onClick={()=>addCartItems({name: 'Waffles with berries', price: '$6.50'})} className='flex align-center px-10 py-4 border-1 border-gray-900 rounded-4xl shadow-sm text-black hover:text-rose-50 font-semigold bg-white hover:bg-red-700 '>
               <span>
               <img src={cart} alt="" />
               </span>
@@ -43,11 +71,11 @@ function App() {
       </div>
           
 
-     <div>
+     <div className='w-[70%] mx-auto lg:w-[80%]'>
        <div className="relative">
          <img className='rounded-3xl ' src={vanilla} alt="" />
          <div className="absolute top-[90%] left-[10%] flex justify-center w-[80%] max-w-[80%] mx-auto">
-           <button className='flex align-center px-10 py-4 border-1 border-gray-900 rounded-4xl shadow-sm text-black hover:text-rose-50 font-semigold bg-white hover:bg-red-700 '>
+           <button onClick={()=>addCartItems({name: 'Vanilla Bean Creme Brulee', price: '$7.00'})} className='flex align-center px-10 py-4 border-1 border-gray-900 rounded-4xl shadow-sm text-black hover:text-rose-50 font-semigold bg-white hover:bg-red-700 '>
             <span>
               <img src={cart} alt="" />
             </span>
@@ -62,11 +90,11 @@ function App() {
        </div>
       </div>
 
-      <div>
+      <div className='w-[70%] mx-auto lg:w-[80%]'>
        <div className="relative">
          <img className='rounded-3xl ' src={macaron} alt="" />
          <div className="absolute top-[90%] left-[10%] flex justify-center w-[80%] max-w-[80%] mx-auto">
-           <button className='flex align-center px-10 py-4 border-1 border-gray-900 rounded-4xl shadow-sm text-black hover:text-rose-50 font-semigold bg-white hover:bg-red-700 '>
+           <button onClick={()=>addCartItems({name: 'Maracon Mix of Five', price: '$8.00'})} className='flex align-center px-10 py-4 border-1 border-gray-900 rounded-4xl shadow-sm text-black hover:text-rose-50 font-semigold bg-white hover:bg-red-700 '>
             <span>
               <img src={cart} alt="" />
             </span>
@@ -84,11 +112,11 @@ function App() {
     </div>
     
     <div id="two" className='grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6'>
-     <div>
+     <div className='w-[70%] mx-auto lg:w-[80%]'>
         <div className="relative">
             <img className='rounded-3xl' src={tiramisu} alt="" />
           <div className="absolute top-[90%] left-[10%] flex justify-center w-[80%] max-w-[80%] mx-auto">
-            <button className='flex align-center px-10 py-4 border-1 border-gray-900 rounded-4xl shadow-sm text-black hover:text-rose-50 font-semigold bg-white hover:bg-red-700 '>
+            <button onClick={()=>addCartItems({name: 'Classic Tiramisu', price: '$5.50'})} className='flex align-center px-10 py-4 border-1 border-gray-900 rounded-4xl shadow-sm text-black hover:text-rose-50 font-semigold bg-white hover:bg-red-700 '>
               <span>
               <img src={cart} alt="" />
               </span>
@@ -103,11 +131,11 @@ function App() {
         </div>
       </div>
 
-      <div>
+      <div className='w-[70%] mx-auto lg:w-[80%]'>
         <div className="relative">
             <img className='rounded-3xl' src={baklava} alt="" />
           <div className="absolute top-[90%] left-[10%] flex justify-center w-[80%] max-w-[80%] mx-auto">
-            <button className='flex align-center px-10 py-4 border-1 border-gray-900 rounded-4xl shadow-sm text-black hover:text-rose-50 font-semigold bg-white hover:bg-red-700 '>
+            <button onClick={()=>addCartItems({name: 'Pistachio Baklava', price: '$4.00'})} className='flex align-center px-10 py-4 border-1 border-gray-900 rounded-4xl shadow-sm text-black hover:text-rose-50 font-semigold bg-white hover:bg-red-700 '>
               <span>
               <img src={cart} alt="" />
               </span>
@@ -122,11 +150,11 @@ function App() {
         </div>
       </div>
 
-      <div>
+      <div className='w-[70%] mx-auto lg:w-[80%]'>
         <div className="relative">
             <img className='rounded-3xl' src={lemonPie} alt="" />
           <div className="absolute top-[90%] left-[10%] flex justify-center w-[80%] max-w-[80%] mx-auto">
-            <button className='flex align-center px-10 py-4 border-1 border-gray-900 rounded-4xl shadow-sm text-black hover:text-rose-50 font-semigold bg-white hover:bg-red-700 '>
+            <button onClick={()=>addCartItems({name: 'Lemon Meringue Pie', price: '$5.00'})} className='flex align-center px-10 py-4 border-1 border-gray-900 rounded-4xl shadow-sm text-black hover:text-rose-50 font-semigold bg-white hover:bg-red-700 '>
               <span>
               <img src={cart} alt="" />
               </span>
@@ -144,11 +172,11 @@ function App() {
     </div>
 
     <div id="three" className='grid grid-cols-1 sm:grid-cols-3 gap-3 mt-6'>
-     <div>
+     <div className='w-[70%] mx-auto lg:w-[80%]'>
         <div className="relative">
             <img className='rounded-3xl' src={cake} alt="" />
           <div className="absolute top-[90%] left-[10%] flex justify-center w-[80%] max-w-[80%] mx-auto">
-            <button className='flex align-center px-10 py-4 border-1 border-gray-900 rounded-4xl shadow-sm text-black hover:text-rose-50 font-semigold bg-white hover:bg-red-700 '>
+            <button onClick={()=>addCartItems({name: 'Red Velvet Cake', price: '$4.50'})} className='flex align-center px-10 py-4 border-1 border-gray-900 rounded-4xl shadow-sm text-black hover:text-rose-50 font-semigold bg-white hover:bg-red-700 '>
               <span>
               <img src={cart} alt="" />
               </span>
@@ -163,11 +191,11 @@ function App() {
         </div>
       </div>
 
-      <div>
+      <div className='w-[70%] mx-auto lg:w-[80%]'>
         <div className="relative">
             <img className='rounded-3xl' src={brownie} alt="" />
           <div className="absolute top-[90%] left-[10%] flex justify-center w-[80%] max-w-[80%] mx-auto">
-            <button className='flex align-center px-10 py-4 border-1 border-gray-900 rounded-4xl shadow-sm text-black hover:text-rose-50 font-semigold bg-white hover:bg-red-700 '>
+            <button onClick={()=>addCartItems({name: 'Salted Caramel Brownie', price: '$5.50'})} className='flex align-center px-10 py-4 border-1 border-gray-900 rounded-4xl shadow-sm text-black hover:text-rose-50 font-semigold bg-white hover:bg-red-700 '>
               <span>
               <img src={cart} alt="" />
               </span>
@@ -182,11 +210,11 @@ function App() {
         </div>
       </div>
 
-      <div>
+      <div className='w-[70%] mx-auto lg:w-[80%]'>
         <div className="relative">
             <img className='rounded-3xl' src={panna} alt="" />
           <div className="absolute top-[90%] left-[10%] flex justify-center w-[80%] max-w-[80%] mx-auto">
-            <button className='flex align-center px-10 py-4 border-1 border-gray-900 rounded-4xl shadow-sm text-black hover:text-rose-50 font-semigold bg-white hover:bg-red-700 '>
+            <button onClick={()=>addCartItems({name: 'Vanilla Panna Cotta', price: '$6.50'})} className='flex align-center px-10 py-4 border-1 border-gray-900 rounded-4xl shadow-sm text-black hover:text-rose-50 font-semigold bg-white hover:bg-red-700 '>
               <span>
               <img src={cart} alt="" />
               </span>
@@ -203,32 +231,36 @@ function App() {
     </div>
 
 {/* empty cart */}
-    <div id='empty' className='grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6 mx-auto'>
+{(cartValue.length === 0) ? (
+  <div id='empty' className='grid grid-cols-1 sm:grid-cols-2 gap-3 mt-6 mx-auto'>
        <div className='bg-rose-50 rounded-3xl p-8 lg:w-full w-[80%] mx-auto'>
           <h3 className='text-red-900 text-2xl red-hat-text-700'>Your Cart (0)</h3>
           <img className='mx-auto' src={emptyCart} alt="" />
           <p className='text-rose-400 text-center p-8'>Your added items will appear here</p>
         </div>
-      
-      {/* adding to cart */}
-      <div id="cart" className='bg-rose-50 p-8 rounded-3xl lg:h-full lg:w-full w-[80%] mx-auto'>
-        <h1 className='text-red-900 red-hat-text-700 text-2xl'>Your Cart (1)</h1>
+        </div>)
+ : (
+  <div id="cart" className='bg-rose-50 p-8 rounded-3xl lg:h-full lg:w-full w-[80%] mx-auto'>
+        <h1 className='text-red-900 red-hat-text-700 text-2xl'>Your Cart ({cartItems.length})</h1>
         <ul>
-          <li className='border-b-1 border-0 border-gray-400'>
+          {cartItems.map((item, index) => (
+            <li key={index} className='border-b-1 border-0 border-gray-400'>
             <div className='flex flex-3/5 flex-row justify-between py-4 align-middle'>
               <div>
-                <h1 className='red-hat-text-600 text-gray-900'>Classic Tiramisu</h1>
-                <span className='text-rose-900 red-hat-text-700 me-2'>1x</span>
-                <span className='me-2 text-gray-500'>@$5.50</span>
-                <span className='me-2 text-gray-700'>$5.50</span>
+                <h1 className='red-hat-text-600 text-gray-900'>{item.name}</h1>
+                {/* <span className='text-rose-900 red-hat-text-700 me-2'>1x</span> */}
+                <span className='me-2 text-gray-500'>{item.price}</span>
+                {/* <span className='me-2 text-gray-700'>$5.50</span> */}
               </div>
               <div>
-                <button className='border border-gray-700 rounded-full p-1 cursor-pointer hover:border-amber-950 hover:border-2'>
+                <button onClick={()=>removeCartItems(item.name)} className='border border-gray-700 rounded-full p-1 cursor-pointer hover:border-amber-950 hover:border-2'>
                 <img src={removeItem} alt="" />
                 </button>
               </div>
             </div>
           </li>
+          ))}
+          
           </ul>
         <div className='flex justify-between py-8'>
           <span>Order Total</span>
@@ -241,13 +273,18 @@ function App() {
         <div className='flex justify-center w-full pt-3'>
           <button className='rounded-4xl bg-red-800 text-amber-50 py-2 px-8 w-full cursor-pointer hover:bg-green-900'>Confirm Order</button>
         </div>
-      </div>
+      </div>)}
+
+    
+      
+    
+      
 
 
     </div>
       
 
-    </div>
+   
       
     </>
   )
